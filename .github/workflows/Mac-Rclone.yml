@@ -102,11 +102,6 @@ jobs:
             https://api.github.com/repos/tammader2/pikpak2cloud/actions/workflows/Mac-Rclone.yml/dispatches \
             -d '{"ref":"main","inputs":{}}' 
 
-      - name: 通知上传结果
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
-        run: |
-          wget -O /dev/null -o /dev/null "${{secrets.BARK_KEY}}?title=上传结果&icon=https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png&group=Actions&body=${{ steps.downloading.outputs.filename }}上传成功&isArchive=0"
-         
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v1.2.3
         with:
